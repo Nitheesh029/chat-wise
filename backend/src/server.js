@@ -1,14 +1,17 @@
-// backend/src/index.js
-import express from "express";
-import dotenv from "dotenv";
+import { PORT } from "./config/env.js";
+import app from "./app.js";
+import connectToDatabase from "./config/db.js";
 
-dotenv.config();
-const app = express();
+connectToDatabase()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port https://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Failed to start the server:", error);
+  });
 
 app.get("/", (req, res) => {
-  res.send("Backend running 🚀");
-});
-
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+  res.send("ChatWise Backend is running");
 });
