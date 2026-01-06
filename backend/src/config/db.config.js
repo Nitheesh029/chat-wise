@@ -1,4 +1,4 @@
-import { DB_URI } from "./env.js";
+import { DB_URI } from "./env.config.js";
 import mongoose from "mongoose";
 
 if (!DB_URI) {

@@ -1,6 +1,6 @@
-import { PORT } from "./config/env.js";
+import { PORT } from "./config/env.config.js";
 import app from "./app.js";
-import connectToDatabase from "./config/db.js";
+import connectToDatabase from "./config/db.config.js";
 
 connectToDatabase()
   .then(() => {
