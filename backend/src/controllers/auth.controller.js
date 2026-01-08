@@ -40,7 +40,7 @@ export const registerUser = async (req, res, body) => {
     }
 };
 
-export const loginUser = async (res, req) => {
+export const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
 
@@ -79,7 +79,7 @@ export const getLoggedInUser = async (req, res) => {
     try {
         const userId = req.user.userId;
 
-        const user = User.findOne(userId);
+        const user = await User.findById(userId).select("-password");
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });
